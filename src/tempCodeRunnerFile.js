@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
-
 function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -10,7 +9,7 @@ function App() {
     length: password.length >= 8,
     uppercase: /[A-Z]/.test(password),
     number: /[0-9]/.test(password),
-    specialChar: /[!@#$%^&*(),.?":{}|<>]/.test(password),
+    specialChar: /[!@#$%^&*(),.?:{}|<>]/.test(password),
   };
 
   const isPasswordStrong = Object.values(rules).every(Boolean);
@@ -20,18 +19,9 @@ function App() {
     alert("Login Successful!");
   };
 
-  // yaha hum renderIcon function define kar rahe hain
-  const renderIcon = (condition) =>
-    condition ? (
-      <FaCheckCircle style={{ marginRight: "6px" }} />
-    ) : (
-      <FaTimesCircle style={{ marginRight: "6px" }} />
-    );
-
   return (
     <div style={{ maxWidth: "400px", margin: "50px auto" }}>
-      <h2>Strong Password Validator Form</h2>
-
+      <h2> Strong Password Validator Form </h2>
       <form onSubmit={handleSubmit}>
         <label>Username:</label>
         <input
@@ -41,35 +31,21 @@ function App() {
           required
           style={{ width: "100%", marginBottom: "10px" }}
         />
-
-        <label>Password:</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          style={{ width: "100%", marginBottom: "10px" }}
-        />
-
         <ul style={{ listStyle: "none", paddingLeft: 0 }}>
           <li style={{ color: rules.length ? "green" : "red" }}>
-            {renderIcon(rules.length)}
-            At least 8 characters
+            {renderIcon(rules.length)} At least 8 characters{" "}
           </li>
 
-          <li style={{ color: rules.uppercase ? "green" : "red" }}>
-            {renderIcon(rules.uppercase)}
-            At least 1 uppercase letter
+          <li style={{ color: rules.uppecase ? "green" : "red" }}>
+            {renderIcon(rules.uppercase)} At least 1 uppercase letter
           </li>
 
           <li style={{ color: rules.number ? "green" : "red" }}>
-            {renderIcon(rules.number)}
-            At least 1 number
+            {renderIcon(rules.number)} At least 1 number{" "}
           </li>
 
           <li style={{ color: rules.specialChar ? "green" : "red" }}>
-            {renderIcon(rules.specialChar)}
-            At least 1 special character
+            {renderIcon(rules.specialChar)} At least 1 special character letter
           </li>
         </ul>
 
@@ -84,14 +60,11 @@ function App() {
             border: "none",
             borderRadius: "4px",
             cursor: isPasswordStrong ? "pointer" : "not-allowed",
-            margin: "10px 0",
+            margin: "10px",
           }}
-        >
-          Submit
-        </button>
+        ></button>
       </form>
     </div>
   );
 }
-
 export default App;
