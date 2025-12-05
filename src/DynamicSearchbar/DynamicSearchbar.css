@@ -1,0 +1,65 @@
+/* Search Bar Card */
+.searchbar-container {
+  max-width: 520px;
+  margin: 0 auto 40px;
+  padding: 18px 20px 22px;
+  border-radius: 14px;
+}
+
+/* Section Title */
+.section-title {
+  margin-bottom: 12px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #f5c518;
+}
+
+/* Input Field */
+.search-input {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: #171c39;
+  color: #ffffff;
+  font-size: 0.95rem;
+  outline: none;
+  transition: 0.25s ease;
+}
+
+.search-input::placeholder {
+  color: #b3b8c4;
+}
+
+.search-input:focus {
+  border-color: #f5c518;
+  box-shadow: 0 0 5px rgba(245, 197, 24, 0.5);
+}
+
+/* Suggestion List */
+.suggestions-list {
+  margin-top: 10px;
+  list-style: none;
+  padding: 6px 0;
+  max-height: 260px;
+  overflow-y: auto;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.4);
+}
+
+/* Suggestion Items */
+.suggestion-item {
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #181b1e;
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+
+.suggestion-item:hover {
+  background: #1c2236;
+  color: #f5c518;
+}
