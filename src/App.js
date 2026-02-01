@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import PasswordValidator from "./components/PasswordValidator";
 import MovieSearch from "./components/MovieSearch";
+import MovieDetails from "./components/MovieDetails";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/password" element={<PasswordValidator />} />
         <Route path="/movies" element={<MovieSearch />} />
         <Route path="/" element={<MovieSearch />} />
+        <Route path="/movie/:imdbID" element={<MovieDetails />} />
       </Routes>
     </BrowserRouter>
   );

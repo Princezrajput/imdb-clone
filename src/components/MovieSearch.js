@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const API_KEY = "d9e0b0e4";
 const API_URL = "https://www.omdbapi.com/";
@@ -59,7 +60,9 @@ function MovieSearch() {
       <ul>
         {movies.map((movie) => (
           <li key={movie.imdbID}>
-            {movie.Title} ({movie.Year})
+            <Link to={`/movie/${movie.imdbID}`}>
+              {movie.Title} ({movie.Year})
+            </Link>
           </li>
         ))}
       </ul>
