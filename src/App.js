@@ -7,6 +7,7 @@ import { ThemeProvider } from "./context/ThemeContext";
 import ThemeToggle from "./components/ThemeToggle";
 import { useContext } from "react";
 import { ThemeContext } from "./context/ThemeContext";
+import TodoApp from "./todo/TodoApp";
 
 function Layout() {
   const { theme } = useContext(ThemeContext);
@@ -23,6 +24,9 @@ function Layout() {
         <Link to="/notes" style={{ marginRight: "15px" }}>
           Notes App
         </Link>
+        <Link to="/todo" style={{ marginRight: "15px" }}>
+          To-Do App
+        </Link>
 
         {/* 🌙 Theme Toggle Button */}
         <ThemeToggle />
@@ -34,6 +38,7 @@ function Layout() {
         <Route path="/movie/:imdbID" element={<MovieDetails />} />
         <Route path="/notes" element={<NotesApp />} />
         <Route path="/" element={<MovieSearch />} />
+        <Route path="/todo" element={<TodoApp />} />
       </Routes>
     </div>
   );

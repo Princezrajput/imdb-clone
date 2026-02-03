@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-
-const API_KEY = "d9e0b0e4";
-const API_URL = "https://www.omdbapi.com/";
+import MovieCard from "./MovieCard";
+import { searchMovies } from "../services/api";
+import "./movies.css";
 
 function MovieSearch() {
   const [query, setQuery] = useState("");
@@ -18,26 +17,25 @@ function MovieSearch() {
         setMovies([]);
         setNoResults(false);
       }
-    }, 500); // 500ms debounce
+    }, 500); // debounce
 
     return () => clearTimeout(timer);
   }, [query]);
 
-  const fetchMovies = async (searchText) => {
+  const fetchMovies = async (text) => {
     setLoading(true);
     setNoResults(false);
 
     try {
-      const res = await fetch(`${API_URL}?apikey=${API_KEY}&s=${searchText}`);
-      const data = await res.json();
+      const data = await searchMovies(text);
 
       if (data.Response === "True") {
         setMovies(data.Search);
       } else {
         setMovies([]);
-        setNoResults(true); // ❌ no results
+        setNoResults(true);
       }
-    } catch (error) {
+    } catch {
       setNoResults(true);
     } finally {
       setLoading(false);
@@ -45,27 +43,23 @@ function MovieSearch() {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="movies-container">
       <input
         type="text"
         placeholder="Search movies by title..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        style={{ width: "100%", padding: "10px" }}
+        className="search-input"
       />
 
       {loading && <p>Loading...</p>}
       {!loading && noResults && <p>No Results Found</p>}
 
-      <ul>
+      <div className="movie-grid">
         {movies.map((movie) => (
-          <li key={movie.imdbID}>
-            <Link to={`/movie/${movie.imdbID}`}>
-              {movie.Title} ({movie.Year})
-            </Link>
-          </li>
+          <MovieCard key={movie.imdbID} movie={movie} />
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

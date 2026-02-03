@@ -1,0 +1,47 @@
+.todo-container {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #080202;
+  color: white;
+  border-radius: 10px;
+}
+
+.todo-input {
+  display: flex;
+  gap: 10px;
+}
+
+.todo-input input {
+  flex: 1;
+  padding: 8px;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  background: #b11a1a;
+  padding: 8px;
+  margin-top: 10px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.todo-item:hover {
+  transform: scale(1.02);
+}
+
+.todo-item.done span {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.filter-bar {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.filter-bar .active {
+  background: #ff9800;
+}
