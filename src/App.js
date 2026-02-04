@@ -14,21 +14,21 @@ function Layout() {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <div className={`app ${theme}`}>
-      <nav style={{ padding: "10px", background: "#d5a0a0ee" }}>
-        <Link to="/password" style={{ marginRight: "15px" }}>
-          Password Validator
+    <div className={`app ${theme} ${theme === "dark" ? "dark" : ""}`}>
+      <nav className="flex flex-wrap gap-4 items-center p-4 bg-pink-200 dark:bg-gray-800 transition">
+        <Link className="hover:underline" to="/password">
+          Password
         </Link>
-        <Link to="/movies" style={{ marginRight: "15px" }}>
-          Movie Search
+        <Link className="hover:underline" to="/movies">
+          Movies
         </Link>
-        <Link to="/notes" style={{ marginRight: "15px" }}>
-          Notes App
+        <Link className="hover:underline" to="/notes">
+          Notes
         </Link>
-        <Link to="/todo" style={{ marginRight: "15px" }}>
-          To-Do App
+        <Link className="hover:underline" to="/todo">
+          Todo
         </Link>
-        <Link to="/favorites" style={{ marginRight: "15px" }}>
+        <Link className="hover:underline" to="/favorites">
           Favorites
         </Link>
 
