@@ -1,29 +1,33 @@
 import { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
 import { searchMovies } from "../services/api";
+import Loader from "./Loader";
 import "./movies.css";
 
 function MovieSearch() {
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [noResults, setNoResults] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (query.trim() !== "") {
+      if (query.trim()) {
         fetchMovies(query);
       } else {
         setMovies([]);
         setNoResults(false);
+        setError("");
       }
-    }, 500); // debounce
+    }, 500);
 
     return () => clearTimeout(timer);
   }, [query]);
 
   const fetchMovies = async (text) => {
     setLoading(true);
+    setError("");
     setNoResults(false);
 
     try {
@@ -36,7 +40,7 @@ function MovieSearch() {
         setNoResults(true);
       }
     } catch {
-      setNoResults(true);
+      setError("Failed to load movies. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -52,14 +56,26 @@ function MovieSearch() {
         className="search-input"
       />
 
-      {loading && <p>Loading...</p>}
-      {!loading && noResults && <p>No Results Found</p>}
+      {loading && <Loader text="Fetching movies..." />}
 
-      <div className="movie-grid">
-        {movies.map((movie) => (
-          <MovieCard key={movie.imdbID} movie={movie} />
-        ))}
-      </div>
+      {!loading && error && (
+        <div className="error-box">
+          <p>{error}</p>
+          <button onClick={() => fetchMovies(query)}>Retry</button>
+        </div>
+      )}
+
+      {!loading && noResults && (
+        <p className="empty-state">No movies found 🔍</p>
+      )}
+
+      {!loading && !error && movies.length > 0 && (
+        <div className="movie-grid">
+          {movies.map((movie) => (
+            <MovieCard key={movie.imdbID} movie={movie} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
