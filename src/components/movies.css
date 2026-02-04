@@ -32,3 +32,16 @@
   object-fit: cover;
   border-radius: 8px;
 }
+.movie-card {
+  position: relative;
+}
+
+.fav-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
