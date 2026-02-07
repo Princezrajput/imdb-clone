@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getMovieById } from "../services/api";
 import Loader from "./Loader";
+import Comments from "./Comments";
 
 function MovieDetails() {
   const { imdbID } = useParams();
@@ -9,7 +10,7 @@ function MovieDetails() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const fetchDetails = async () => {
+  const fetchDetails = useCallback(async () => {
     setLoading(true);
     setError("");
 
@@ -28,11 +29,11 @@ function MovieDetails() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [imdbID]);
 
   useEffect(() => {
     fetchDetails();
-  }, [imdbID]);
+  }, [fetchDetails]);
 
   /* 🔄 Loading State */
   if (loading) {
@@ -54,7 +55,6 @@ function MovieDetails() {
     return <p style={{ padding: "20px" }}>No movie data available.</p>;
   }
 
-  /* ✅ Success State */
   return (
     <div style={{ padding: "20px", maxWidth: "800px", margin: "auto" }}>
       <img
@@ -79,6 +79,8 @@ function MovieDetails() {
       </p>
 
       <div style={{ clear: "both" }} />
+
+      <Comments movieId={imdbID} />
     </div>
   );
 }
