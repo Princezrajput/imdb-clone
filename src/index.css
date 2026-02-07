@@ -30,3 +30,16 @@ code {
   background-color: #1e2758;
   color: #ffffff;
 }
+.loadMoreBtn {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 25px auto;
+  display: block;
+  font-size: 16px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
